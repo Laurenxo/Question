@@ -13,7 +13,7 @@ class Answer extends StatelessWidget {
         color: Colors.blue,
         textColor: Colors.white,
         onPressed: () => selectHandler(),
-        child: const Text('Answer 1'),
+        child: Text(answerText),
       ),
     );
   }

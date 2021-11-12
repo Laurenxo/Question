@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
+    List questions = [
       {
         'questionText': 'What\'s your favorite color?',
         'anwsers': ['Green', 'Red', 'Yellow', 'White']
@@ -45,10 +45,8 @@ class _MyAppState extends State<MyApp> {
             Question(
               questions[_questionIndex]['questionText'],
             ),
-
-            // ...((questions.[_questionIndex].anwsers as List<String>).map((answer) => {
-            //   return Answer(answerQuestion, answer)
-            // }).toList()),
+            ...((questions[_questionIndex]['anwsers'] as List <String>)
+                .map((answer) => Answer(answerQuestion, answer))),
           ],
         ),
       ),
