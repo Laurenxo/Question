@@ -16,12 +16,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
 
-  void answerQuestion() {
-    setState(() {
-      _questionIndex += 1;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     List questions = [
@@ -35,20 +29,30 @@ class _MyAppState extends State<MyApp> {
       },
     ];
 
+    void answerQuestion() {
+      setState(() {
+        _questionIndex += 1;
+      });
+    }
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('My first app'),
         ),
-        body: Column(
-          children: [
-            Question(
-              questions[_questionIndex]['questionText'],
-            ),
-            ...((questions[_questionIndex]['anwsers'] as List <String>)
-                .map((answer) => Answer(answerQuestion, answer))),
-          ],
-        ),
+        body: _questionIndex < questions.length
+            ? Column(
+                children: [
+                  Question(
+                    questions[_questionIndex]['questionText'],
+                  ),
+                  ...((questions[_questionIndex]['anwsers'] as List<String>)
+                      .map((answer) => Answer(answerQuestion, answer))),
+                ],
+              )
+            : const Center(
+                child: Text('We have more questions'),
+              ),
       ),
     );
   }
